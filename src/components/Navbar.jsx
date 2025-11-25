@@ -41,7 +41,7 @@ const NavBar = () => {
   );
   return (
     <div className="bg-linear-to-r from-[#264839] to-[#8dab7d]">
-      <div className="shadow-sm mb-10">
+      <div className="shadow-sm py-4">
         <div className="navbar max-w-11/12 mx-auto">
           <div className="navbar-start">
             <div className="dropdown">

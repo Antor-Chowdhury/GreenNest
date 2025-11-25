@@ -19,7 +19,7 @@ const Footer = () => {
     </>
   );
   return (
-    <div className="flex flex-col items-center justify-center bg-linear-to-r from-[#264839] to-[#8dab7d] text-white pt-20 pb-10 text-center px-2.5 mt-10">
+    <div className="flex flex-col items-center justify-center bg-linear-to-r from-[#264839] to-[#8dab7d] text-white pt-20 pb-10 text-center px-2.5">
       <Link to="/" className="flex items-center gap-1">
         <h1 className="text-lg md:text-2xl font-bold">
           🌱 <span className="text-yellow-500">G</span>reenNest

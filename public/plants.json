@@ -44,7 +44,7 @@
     "availableStock": 15,
     "careLevel": "Easy",
     "description": "An extremely resilient plant ideal for offices and low-light areas.",
-    "image": "https://i.ibb.co.com/SXqRBP3M/4.jpg",
+    "image": "https://i.ibb.co.com/S41ZVbq8/4-1.webp",
     "providerName": "UrbanGreen Studio"
   },
   {
@@ -56,7 +56,7 @@
     "availableStock": 9,
     "careLevel": "Medium",
     "description": "A graceful plant with white flowers known for air purification.",
-    "image": "https://i.ibb.co.com/BVx6rWvL/5.webp",
+    "image": "https://i.ibb.co.com/5hRZx23t/5-1.webp",
     "providerName": "BlossomRoot Gardens"
   },
   {
@@ -108,16 +108,16 @@
     "providerName": "LeafyLane Store"
   },
   {
-    "plantId": 10,
-    "plantName": "Lavender",
-    "category": "Aromatic",
-    "price": 22,
-    "rating": 4.5,
-    "availableStock": 14,
-    "careLevel": "Medium",
-    "description": "A fragrant herb that promotes relaxation and blooms purple flowers.",
-    "image": "https://i.ibb.co.com/S7y66V6t/10.webp",
-    "providerName": "BlossomRoot Gardens"
+  "plantId": 10,
+  "plantName": "Boston Fern",
+  "category": "Air Purifier",
+  "price": 24,
+  "rating": 4.6,
+  "availableStock": 13,
+  "careLevel": "Medium",
+  "description": "A lush, arching fern known for its excellent air-purifying abilities and elegant texture.",
+  "image": "https://i.ibb.co.com/W4nysxG9/10-2.webp",
+  "providerName": "BlossomRoot Gardens"
   },
   {
     "plantId": 11,

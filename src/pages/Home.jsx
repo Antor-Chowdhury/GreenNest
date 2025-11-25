@@ -2,6 +2,7 @@ import React from "react";
 import Slider from "../components/Slider";
 import TopRatedPlants from "../components/TopRatedPlants";
 import PlantsCare from "../components/PlantsCare";
+import GreenExperts from "../components/GreenExperts";
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
       <Slider></Slider>
       <TopRatedPlants></TopRatedPlants>
       <PlantsCare></PlantsCare>
+      <GreenExperts></GreenExperts>
     </div>
   );
 };

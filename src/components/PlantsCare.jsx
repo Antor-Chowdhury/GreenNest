@@ -40,7 +40,7 @@ const PlantsCare = () => {
             <img
               src={tip.image}
               alt={tip.title}
-              className="w-full h-52 object-cover"
+              className="w-full h-50 md:h-72 object-cover"
             />
             <div className="p-5">
               <h3 className="text-xl font-bold mb-2">{tip.title}</h3>

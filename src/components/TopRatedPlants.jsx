@@ -24,7 +24,7 @@ const TopRatedPlants = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {plants.slice(0, 6).map((plant) => (
-            <div className="card bg-base-100 w-full ">
+            <div key={plant.plantId} className="card bg-base-100 w-full ">
               <figure className="px-3 md:px-10 pt-3 md:pt-10">
                 <img
                   src={plant?.image}

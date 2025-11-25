@@ -40,8 +40,8 @@ const NavBar = () => {
     </>
   );
   return (
-    <div className="shadow-sm bg-linear-to-r from-[#496c4e] to-[#8dab7d]">
-      <div className="navbar bg-linear-to-r from-[#496c4e] to-[#8dab7d] max-w-11/12 mx-auto">
+    <div className="shadow-sm bg-linear-to-r from-[#264839] to-[#8dab7d] mb-10">
+      <div className="navbar bg-linear-to-r from-[#264839] to-[#8dab7d] max-w-11/12 mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
             <div

@@ -40,38 +40,40 @@ const NavBar = () => {
     </>
   );
   return (
-    <div className="shadow-sm bg-linear-to-r from-[#264839] to-[#8dab7d] mb-10">
-      <div className="navbar bg-linear-to-r from-[#264839] to-[#8dab7d] max-w-11/12 mx-auto">
-        <div className="navbar-start">
-          <div className="dropdown">
-            <div
-              tabIndex={0}
-              role="button"
-              className="mr-2 btn-ghost lg:hidden"
-            >
-              <FaBars className="" />
+    <div className="bg-linear-to-r from-[#264839] to-[#8dab7d]">
+      <div className="shadow-sm mb-10">
+        <div className="navbar max-w-11/12 mx-auto">
+          <div className="navbar-start">
+            <div className="dropdown">
+              <div
+                tabIndex={0}
+                role="button"
+                className="mr-2 btn-ghost lg:hidden"
+              >
+                <FaBars className="" />
+              </div>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-lg"
+              >
+                {links}
+              </ul>
             </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-lg"
-            >
-              {links}
-            </ul>
+            <Link to="/" className="flex items-center justify-center gap-1">
+              <figure className="md:w-8 md:h-8"></figure>
+              <h1 className="md:text-2xl gradient-text font-bold text-white">
+                🌱 <span className="text-yellow-500">G</span>reenNest
+              </h1>
+            </Link>
           </div>
-          <Link to="/" className="flex items-center justify-center gap-1">
-            <figure className="md:w-8 md:h-8"></figure>
-            <h1 className="md:text-2xl gradient-text font-bold text-white">
-              🌱 <span className="text-yellow-500">G</span>reenNest
-            </h1>
-          </Link>
-        </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="space-x-10 menu-horizontal px-1 text-lg">{links}</ul>
-        </div>
-        <div className="navbar-end">
-          <a className="btn text-lg text-white bg-[#d5b60a] border-none shadow-none">
-            <span className="sm:block">Login</span>
-          </a>
+          <div className="navbar-center hidden lg:flex">
+            <ul className="space-x-10 menu-horizontal px-1 text-lg">{links}</ul>
+          </div>
+          <div className="navbar-end">
+            <a className="btn text-lg text-white bg-[#d5b60a] border-none shadow-none">
+              <span className="sm:block">Login</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>

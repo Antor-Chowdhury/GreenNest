@@ -26,7 +26,7 @@ const Login = () => {
       });
   };
 
-  console.log(user);
+  // console.log(user);
 
   return (
     <div className="hero bg-base-200 min-h-screen">

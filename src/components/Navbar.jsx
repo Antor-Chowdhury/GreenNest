@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaBars } from "react-icons/fa";
 import { Link, NavLink } from "react-router";
+import { AuthContext } from "../Provider/AuthProvider";
+import { signOut } from "firebase/auth";
+import auth from "../firebase/firebase.config";
+import { toast } from "react-toastify";
 const NavBar = () => {
+  const { user } = useContext(AuthContext);
+
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        toast.success("SignOut Successful!");
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
+  };
+
   const links = (
     <>
       <NavLink to="/">
@@ -42,7 +58,7 @@ const NavBar = () => {
   return (
     <div className="bg-linear-to-r from-[#264839] to-[#8dab7d]">
       <div className="shadow-sm py-4">
-        <div className="navbar max-w-11/12 mx-auto">
+        <div className="navbar max-w-11/12 mx-auto pb-20 md:pb-0">
           <div className="navbar-start">
             <div className="dropdown">
               <div
@@ -54,7 +70,7 @@ const NavBar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-lg"
+                className="menu menu-sm dropdown-content bg-linear-to-r from-[#264839] to-[#8dab7d] rounded-box z-1 mt-3 w-52 p-2 shadow text-lg"
               >
                 {links}
               </ul>
@@ -69,14 +85,36 @@ const NavBar = () => {
           <div className="navbar-center hidden lg:flex">
             <ul className="space-x-10 menu-horizontal px-1 text-lg">{links}</ul>
           </div>
-          <div className="navbar-end">
-            <Link
-              to="/login"
-              className="btn text-lg text-white bg-[#d5b60a] border-none shadow-none"
-            >
-              <span className="sm:block">Login</span>
-            </Link>
-          </div>
+
+          {/* login / logout conditional rendering */}
+
+          {user ? (
+            <div className="navbar-end flex items-center gap-3">
+              <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-gray-200">
+                <img
+                  src={user?.photoURL}
+                  alt="User Avatar"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              <button
+                onClick={handleSignOut}
+                className="btn text-white bg-[#d5b60a] border-none shadow-none px-4 py-2"
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <div className="navbar-end">
+              <Link
+                to="/login"
+                className="btn text-lg text-white bg-[#d5b60a] border-none shadow-none"
+              >
+                Login
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -70,9 +70,12 @@ const NavBar = () => {
             <ul className="space-x-10 menu-horizontal px-1 text-lg">{links}</ul>
           </div>
           <div className="navbar-end">
-            <a className="btn text-lg text-white bg-[#d5b60a] border-none shadow-none">
+            <Link
+              to="/login"
+              className="btn text-lg text-white bg-[#d5b60a] border-none shadow-none"
+            >
               <span className="sm:block">Login</span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

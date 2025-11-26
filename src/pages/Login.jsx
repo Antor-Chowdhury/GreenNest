@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import { toast } from "react-toastify";
 
 const Login = () => {
   const { login, setUser, googleSignIn } = useContext(AuthContext);
+
+  const [email, setEmail] = useState("");
 
   const location = useLocation();
   // console.log(location);
@@ -44,6 +46,10 @@ const Login = () => {
       });
   };
 
+  const handleForget = () => {
+    navigate(`/forget/${email}`);
+  };
+
   return (
     <div className="hero bg-base-200 min-h-screen">
       <title>login</title>
@@ -54,6 +60,7 @@ const Login = () => {
               {/* Email */}
               <label className="label">Email</label>
               <input
+                onChange={(e) => setEmail(e.target.value)}
                 name="email"
                 type="email"
                 className="input"
@@ -71,7 +78,9 @@ const Login = () => {
                 required
               />
               <div>
-                <a className="link link-hover">Forgot password?</a>
+                <button onClick={handleForget} className="link link-hover">
+                  Forgot password?
+                </button>
               </div>
               <button className="btn btn-neutral mt-4">Login</button>
 

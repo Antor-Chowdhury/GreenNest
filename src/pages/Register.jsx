@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import { toast } from "react-toastify";
 import { updateProfile } from "firebase/auth";
@@ -8,6 +8,8 @@ import auth from "../firebase/firebase.config";
 const Register = () => {
   const { register, googleSignIn, setUser } = useContext(AuthContext);
 
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -15,7 +17,20 @@ const Register = () => {
     const name = e.target.name.value;
     const photoUrl = e.target.photoUrl.value;
 
-    console.log(email, password, name, photoUrl);
+    const uppercase = /[A-Z]/;
+    const lowercase = /[a-z]/;
+
+    if (password.length < 6) {
+      return toast.error("Less than 6 characters");
+    }
+    if (!uppercase.test(password)) {
+      return toast.error("Need a Uppercase");
+    }
+    if (!lowercase.test(password)) {
+      return toast.error("Need a Lowercase");
+    }
+
+    // console.log(email, password, name, photoUrl);
 
     register(email, password)
       .then((userCredential) => {
@@ -26,6 +41,7 @@ const Register = () => {
           .then(() => {
             // console.log(userCredential.user);
             setUser(userCredential.user);
+            navigate("/");
           })
           .catch((err) => {
             toast.error(err.message);
@@ -49,6 +65,7 @@ const Register = () => {
         const user = result.user;
         setUser(user);
         toast.success("Login successful!");
+        navigate("/");
       })
       .catch((err) => {
         toast.error(err.message);
@@ -89,7 +106,6 @@ const Register = () => {
                 type="text"
                 className="input"
                 placeholder="Enter your photoURL"
-                required
               />
 
               {/* password */}

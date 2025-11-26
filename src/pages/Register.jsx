@@ -1,19 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import { toast } from "react-toastify";
 import { updateProfile } from "firebase/auth";
 import auth from "../firebase/firebase.config";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
   const { register, googleSignIn, setUser } = useContext(AuthContext);
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
-    const password = e.target.password.value;
     const name = e.target.name.value;
     const photoUrl = e.target.photoUrl.value;
 
@@ -21,16 +24,14 @@ const Register = () => {
     const lowercase = /[a-z]/;
 
     if (password.length < 6) {
-      return toast.error("Less than 6 characters");
+      return toast.error("Password must be at least 6 characters.");
     }
     if (!uppercase.test(password)) {
-      return toast.error("Need a Uppercase");
+      return toast.error("Password must contain an uppercase letter.");
     }
     if (!lowercase.test(password)) {
-      return toast.error("Need a Lowercase");
+      return toast.error("Password must contain a lowercase letter.");
     }
-
-    // console.log(email, password, name, photoUrl);
 
     register(email, password)
       .then((userCredential) => {
@@ -39,25 +40,22 @@ const Register = () => {
           photoURL: photoUrl,
         })
           .then(() => {
-            // console.log(userCredential.user);
             setUser(userCredential.user);
+            toast.success("Registration successful!");
             navigate("/");
           })
           .catch((err) => {
             toast.error(err.message);
           });
 
-        toast.success("Registration successful!");
-
         // clear the form
         e.target.reset();
+        setPassword("");
       })
       .catch((err) => {
         toast.error(err.message);
       });
   };
-
-  //   console.log(user);
 
   const handleGoogleSignUp = () => {
     googleSignIn()
@@ -74,7 +72,7 @@ const Register = () => {
 
   return (
     <div className="hero bg-base-200 min-h-screen">
-      <title>login</title>
+      <title>Register</title>
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
           <div className="card-body">
@@ -108,24 +106,38 @@ const Register = () => {
                 placeholder="Enter your photoURL"
               />
 
-              {/* password */}
+              {/* Password */}
               <label className="label">Password</label>
-              <input
-                name="password"
-                type="password"
-                className="input"
-                placeholder="Password"
-                required
-              />
-              <div>
-                <a className="link link-hover">Forgot password?</a>
+              <div className="relative">
+                <input
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  className="input"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute top-2 right-2 text-gray-600"
+                >
+                  {showPassword ? (
+                    <FaEyeSlash size={18} />
+                  ) : (
+                    <FaEye size={18} />
+                  )}
+                </button>
               </div>
-              <button className="btn btn-neutral mt-4">Register</button>
+
+              <button className="btn btn-neutral mt-4 w-full">Register</button>
 
               {/* Google SignIn */}
               <button
+                type="button"
                 onClick={handleGoogleSignUp}
-                className="btn bg-white text-black border-[#e5e5e5]"
+                className="btn bg-white text-black border-[#e5e5e5] mt-2 w-full flex items-center justify-center gap-2"
               >
                 <svg
                   aria-label="Google logo"
@@ -157,11 +169,10 @@ const Register = () => {
                 Signup with Google
               </button>
 
-              <div className="mt-2">
+              <div className="mt-2 text-center">
                 <span>
                   Already have an Account?
-                  <Link className="text-blue-700 font-medium" to="/login">
-                    {" "}
+                  <Link className="text-blue-700 font-medium ml-1" to="/login">
                     Sign in
                   </Link>
                 </span>

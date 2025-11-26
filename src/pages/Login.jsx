@@ -2,11 +2,14 @@ import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import { toast } from "react-toastify";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const { login, setUser, googleSignIn } = useContext(AuthContext);
 
   const [email, setEmail] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [password, setPassword] = useState("");
 
   const location = useLocation();
   // console.log(location);
@@ -27,6 +30,7 @@ const Login = () => {
 
         // clear the form
         e.target.reset();
+        setPassword("");
       })
       .catch((err) => {
         toast.error(err.message);
@@ -70,13 +74,28 @@ const Login = () => {
 
               {/* Password */}
               <label className="label">Password</label>
-              <input
-                name="password"
-                type="password"
-                className="input"
-                placeholder="Password"
-                required
-              />
+              <div className="relative">
+                <input
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  className="input"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute top-2 right-2 text-gray-600"
+                >
+                  {showPassword ? (
+                    <FaEyeSlash size={18} />
+                  ) : (
+                    <FaEye size={18} />
+                  )}
+                </button>
+              </div>
               <div>
                 <button onClick={handleForget} className="link link-hover">
                   Forgot password?

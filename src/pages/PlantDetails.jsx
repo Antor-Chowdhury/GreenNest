@@ -1,19 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { toast } from "react-toastify";
+import Loading from "../components/Loading";
 
 const PlantDetails = () => {
   const { id } = useParams();
   const [plants, setPlants] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("/plants.json")
       .then((res) => res.json())
-      .then((data) => setPlants(data))
+      .then((data) => {
+        setPlants(data);
+        setLoading(false);
+      })
       .catch((err) => console.log(err));
   }, []);
 
   const findResult = plants.find((plant) => plant.plantId === Number(id));
+
+  if (loading) {
+    return <Loading></Loading>;
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();

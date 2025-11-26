@@ -3,6 +3,7 @@ import Slider from "../components/Slider";
 import TopRatedPlants from "../components/TopRatedPlants";
 import PlantsCare from "../components/PlantsCare";
 import GreenExperts from "../components/GreenExperts";
+import PlantOfTheWeek from "../components/PlantOfTheWeek";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <TopRatedPlants></TopRatedPlants>
       <PlantsCare></PlantsCare>
       <GreenExperts></GreenExperts>
+      <PlantOfTheWeek></PlantOfTheWeek>
     </div>
   );
 };

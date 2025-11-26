@@ -5,11 +5,13 @@ const Plants = () => {
   const [plants, setPlants] = useState([]);
 
   useEffect(() => {
-    fetch("./plants.json")
+    fetch("/plants.json")
       .then((res) => res.json())
       .then((data) => setPlants(data))
       .catch((err) => console.log(err));
   }, []);
+
+  // console.log(plants);
 
   return (
     <div className="bg-linear-to-r from-[#e3f7da] to-[#8dab7d] py-10">
@@ -30,7 +32,7 @@ const Plants = () => {
                 <img
                   src={plant?.image}
                   alt={plant?.plantName}
-                  className="rounded-xl"
+                  className="rounded-xl w-40"
                 />
               </figure>
               <div className="card-body items-center text-center">
@@ -38,7 +40,9 @@ const Plants = () => {
                 <p className="font-medium">Price: {plant?.price}$</p>
                 <p className="font-medium">Ratings: {plant?.rating}</p>
                 <div className="card-actions">
-                  <button className="btn btn-primary">View Details</button>
+                  <Link to={`/details/${plant?.plantId}`}>
+                    <button className="btn btn-primary">View Details</button>
+                  </Link>
                 </div>
               </div>
             </div>

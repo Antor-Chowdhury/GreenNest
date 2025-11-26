@@ -29,7 +29,7 @@ const TopRatedPlants = () => {
                 <img
                   src={plant?.image}
                   alt={plant?.plantName}
-                  className="rounded-xl"
+                  className="rounded-xl w-40"
                 />
               </figure>
               <div className="card-body items-center text-center">
@@ -37,7 +37,9 @@ const TopRatedPlants = () => {
                 <p className="font-medium">Price: {plant?.price}$</p>
                 <p className="font-medium">Ratings: {plant?.rating}</p>
                 <div className="card-actions">
-                  <button className="btn btn-primary">View Details</button>
+                  <Link to={`/details/${plant?.plantId}`}>
+                    <button className="btn btn-primary">View Details</button>
+                  </Link>
                 </div>
               </div>
             </div>
